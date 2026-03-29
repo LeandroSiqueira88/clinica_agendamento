@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Editar Agendamento</h2>
+
+<form method="POST">
+
+<label>Paciente</label>
+<select name="paciente">
+{% for p in pacientes %}
+<option value="{{ p[0] }}" {% if p[0] == agendamento[1] %}selected{% endif %}>
+{{ p[1] }}
+</option>
+{% endfor %}
+</select>
+
+<label>Profissional</label>
+<select name="profissional">
+{% for p in profissionais %}
+<option value="{{ p[0] }}" {% if p[0] == agendamento[2] %}selected{% endif %}>
+{{ p[1] }}
+</option>
+{% endfor %}
+</select>
+
+<label>Data</label>
+<input type="date" name="data" value="{{ agendamento[3] }}">
+
+<label>Horário</label>
+<select name="hora">
+{% for h in horarios %}
+<option value="{{ h }}" {% if h == agendamento[4] %}selected{% endif %}>
+{{ h }}
+</option>
+{% endfor %}
+</select>
+
+<label>Tipo</label>
+<select name="tipo">
+<option value="Consulta" {% if agendamento[6] == 'Consulta' %}selected{% endif %}>Consulta</option>
+<option value="Retorno" {% if agendamento[6] == 'Retorno' %}selected{% endif %}>Retorno</option>
+</select>
+
+<label>Observação</label>
+<input type="text" name="descricao" value="{{ agendamento[5] }}">
+
+<button>Salvar</button>
+
+</form>
+
+<br>
+
+<a href="/consultas">
+    <button type="button" style="background: gray;">Cancelar</button>
+</a>
+
+{% endblock %}

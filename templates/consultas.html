@@ -1,0 +1,139 @@
+<style>
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background: #2c3e50;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background: #f2f2f2;
+}
+
+/* 🔥 LARGURA DAS COLUNAS */
+th:nth-child(1), td:nth-child(1) { width: 15%; } /* paciente */
+th:nth-child(2), td:nth-child(2) { width: 15%; } /* profissional */
+th:nth-child(3), td:nth-child(3) { width: 10%; } /* data */
+th:nth-child(4), td:nth-child(4) { width: 10%; } /* hora */
+th:nth-child(5), td:nth-child(5) { width: 10%; } /* tipo */
+th:nth-child(6), td:nth-child(6) { width: 10%; } /* status */
+th:nth-child(7), td:nth-child(7) { width: 20%; } /* observação */
+th:nth-child(8), td:nth-child(8) { width: 10%; } /* ações */
+</style>
+
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Consultas</h2>
+
+<!-- 🔍 BUSCA -->
+<form method="GET" style="display:flex; gap:100px;">
+
+    <input type="text" name="busca" placeholder="Buscar paciente...">
+
+    <select name="status">
+        <option value="">Todos</option>
+        <option value="pendente">Pendente</option>
+        <option value="confirmado">Confirmado</option>
+    </select>
+
+    <button class="btn-buscar">Buscar</button>
+
+</form>
+
+<br>
+
+<table>
+<tr>
+    <th>Paciente</th>
+    <th>Profissional</th>
+    <th>Data</th>
+    <th>Horário</th>
+    <th>Tipo</th>
+    <th>Status</th>
+    <th>Observação</th>
+    <th>Ações</th>
+</tr>
+
+{% for c in consultas %}
+<tr>
+    <td>{{ c[1] }}</td>
+    <td>{{ c[2] }}</td>
+    <td>{{ c[3] }}</td>
+    <td>{{ c[4] }}</td>
+
+    <!-- TIPO -->
+    <td>
+        {% if c[6] == 'Consulta' %}
+            <span style="background:#2ecc71; color:white; padding:5px 10px; border-radius:6px;">
+                Consulta
+            </span>
+        {% elif c[6] == 'Retorno' %}
+            <span style="background:#f39c12; color:white; padding:5px 10px; border-radius:6px;">
+                Retorno
+            </span>
+        {% else %}
+            <span style="background:#95a5a6; color:white; padding:5px 10px; border-radius:6px;">
+                {{ c[6] }}
+            </span>
+        {% endif %}
+    </td>
+
+    <!-- STATUS -->
+    <td>
+        {% if c[7] == 'confirmado' %}
+            <span style="color:green;">✔ Confirmado</span>
+        {% else %}
+            <span style="color:orange;">⏳ Pendente</span>
+        {% endif %}
+    </td>
+
+    <td>{{ c[5] }}</td>
+
+    <!-- AÇÕES -->
+    <td>
+        {% if session['tipo'] != 'cliente' %}
+
+            <a href="/confirmar_agendamento/{{ c[0] }}">
+                ✔ Confirmar
+            </a>
+
+            <a href="/editar_agendamento/{{ c[0] }}">
+                🔄 Reagendar
+            </a>
+
+            <a href="/excluir_agendamento/{{ c[0] }}" 
+               onclick="return confirm('Tem certeza que deseja excluir?')">
+               🗑️ Excluir
+            </a>
+
+        {% else %}
+
+            <a href="/excluir_agendamento/{{ c[0] }}" 
+               onclick="return confirm('Deseja cancelar esta consulta?')">
+               ❌ Cancelar
+            </a>
+
+        {% endif %}
+    </td>
+
+</tr>
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/agendar">
+    <button>+ Novo Agendamento</button>
+</a>
+
+{% endblock %}

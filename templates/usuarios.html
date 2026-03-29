@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <h2>Usuários</h2>
+
+    <a href="/novo_usuario">
+        <button style="width:auto; padding:10px 15px;">
+            ➕ Novo Usuário
+        </button>
+    </a>
+</div>
+
+<table>
+<tr>
+    <th>ID</th>
+    <th>Nome</th>
+    <th>Usuário</th>
+    <th>Tipo</th>
+    <th>Ações</th>
+</tr>
+
+{% for u in usuarios %}
+<tr>
+    <td>{{ u[0] }}</td>
+    <td>{{ u[1] }}</td>
+    <td>{{ u[2] }}</td>
+    <td>{{ u[4] }}</td>
+
+    <td>
+        <a href="/editar_usuario/{{ u[0] }}">✏️ Editar</a>
+
+        {% if u[0] != session['usuario_id'] %}
+            <a href="/excluir_usuario/{{ u[0] }}">🗑️ Excluir</a>
+        {% else %}
+            <span style="color: gray;">(Você)</span>
+        {% endif %}
+    </td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

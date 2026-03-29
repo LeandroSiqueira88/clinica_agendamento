@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Painel Administrativo</h2>
+
+<div class="cards">
+
+    <div class="card">
+        <h3>👥 Usuários</h3>
+        <p>Gerenciar usuários do sistema</p>
+        <a href="/usuarios">Acessar</a>
+    </div>
+
+    <div class="card">
+        <h3>➕ Novo Usuário</h3>
+        <p>Criar novo usuário</p>
+        <a href="/novo_usuario">Criar</a>
+    </div>
+
+    <div class="card">
+        <h3>👨‍⚕️ Profissionais</h3>
+        <p>Gerenciar profissionais</p>
+        <a href="/profissionais">Acessar</a>
+    </div>
+
+    <div class="card">
+        <h3>📅 Agenda</h3>
+        <p>Visualizar consultas</p>
+        <a href="/consultas">Ver</a>
+    </div>
+
+    <div class="card">
+        <h3>📝 Novo Agendamento</h3>
+        <p>Agendar consulta</p>
+        <a href="/agendar">Agendar</a>
+    </div>
+
+    <div class="card">
+        <h3>📊 Relatórios</h3>
+        <p>Visualizar dados</p>
+        <a href="/relatorios">Ver</a>
+    </div>
+
+</div>
+
+{% endblock %}

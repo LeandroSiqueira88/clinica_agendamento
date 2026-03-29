@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Profissionais</h2>
+
+<!-- 🔍 BUSCA -->
+<form method="GET">
+    <input type="text" name="busca" placeholder="Buscar profissional...">
+    <button>Buscar</button>
+</form>
+
+<br>
+
+<!-- 🔥 FORM APENAS MASTER -->
+{% if session['tipo'] == 'master' %}
+<form method="POST">
+
+<label>Nome</label>
+<input type="text" name="nome" required>
+
+<label>Especialidade</label>
+<input type="text" name="especialidade" required>
+
+<button>Cadastrar</button>
+
+</form>
+
+<hr>
+{% endif %}
+
+<table>
+<tr>
+    <th>ID</th>
+    <th>Nome</th>
+    <th>Especialidade</th>
+    <th>Ações</th>
+</tr>
+
+{% for p in profissionais %}
+<tr>
+    <td>{{ p[0] }}</td>
+    <td>{{ p[1] }}</td>
+    <td>{{ p[2] }}</td>
+    <td>
+        <a href="/agenda_profissional/{{ p[0] }}">📅 Agenda</a>
+    </td>
+</tr>
+{% endfor %}
+
+</table>
+
+{% endblock %}

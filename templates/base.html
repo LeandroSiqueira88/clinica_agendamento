@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clínica</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav>
+    <h2>Clínica</h2>
+
+    <div>
+        <a href="/">Home</a>
+
+        {% if session.get('usuario_id') %}
+            <span>Olá, {{ session['nome'] }}</span>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/consultas">Consultas</a>
+            <a href="/logout">Sair</a>
+        {% else %}
+            <a href="/login">Login</a>
+            <a href="/cadastro">Cadastro</a>
+        {% endif %}
+    </div>
+</nav>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="toast-container">
+      {% for categoria, msg in messages %}
+        <div class="toast {{ categoria }}">
+          {{ msg }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

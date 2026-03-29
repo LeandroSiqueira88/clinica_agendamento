@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Novo Usuário</h2>
+
+<form method="POST">
+
+<label>Nome</label>
+<input type="text" name="nome" required>
+
+<label>Usuário</label>
+<input type="text" name="usuario" required>
+
+<label>Senha</label>
+<input type="password" name="senha" required>
+
+<label>Tipo</label>
+<select name="tipo">
+    <option value="master">Master</option>
+    <option value="operador">Operador</option>
+    <option value="cliente">Cliente</option>
+</select>
+
+<button>Criar Usuário</button>
+
+</form>
+
+<br>
+
+<a href="/usuarios">
+    <button type="button" style="background: gray;">Cancelar</button>
+</a>
+
+{% endblock %}

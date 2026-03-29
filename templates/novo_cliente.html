@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Novo Cliente</h2>
+
+<form method="POST">
+
+<label>Nome</label>
+<input type="text" name="nome" required>
+
+<label>Usuário</label>
+<input type="text" name="usuario" required>
+
+<label>Senha</label>
+<input type="password" name="senha" required>
+
+<button>Cadastrar Cliente</button>
+
+</form>
+
+<br>
+
+<a href="/consultas">
+    <button type="button" style="background: gray;">Cancelar</button>
+</a>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Agenda - {{ profissional }}</h2>
+
+<table>
+<tr>
+    <th>Data</th>
+    <th>Hora</th>
+    <th>Paciente</th>
+    <th>Tipo</th>
+</tr>
+
+{% for a in agenda %}
+<tr>
+    <td>{{ a[0] }}</td>
+    <td>{{ a[1] }}</td>
+    <td>{{ a[2] }}</td>
+    <td>{{ a[3] }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+{% endblock %}

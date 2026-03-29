@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Novo Agendamento</h2>
+
+<form method="POST">
+
+<!-- PACIENTE -->
+{% if session['tipo'] != 'cliente' %}
+<label>Paciente</label>
+<select name="paciente">
+{% for p in pacientes %}
+<option value="{{ p[0] }}">{{ p[1] }}</option>
+{% endfor %}
+</select>
+{% endif %}
+
+<!-- PROFISSIONAL -->
+<label>Profissional</label>
+<select name="profissional" required>
+{% for p in profissionais %}
+<option value="{{ p[0] }}">{{ p[1] }} - {{ p[2] }}</option>
+{% endfor %}
+</select>
+
+<!-- DATA -->
+<label>Data</label>
+<input type="date" name="data" required>
+
+<!-- HORÁRIO -->
+<label>Horário</label>
+<select name="hora">
+{% for h in horarios %}
+<option value="{{ h }}">{{ h }}</option>
+{% endfor %}
+</select>
+
+<!-- TIPO -->
+<label>Tipo de Atendimento</label>
+<select name="tipo" id="tipo">
+    <option value="">Selecione</option>
+    <option value="Consulta">Consulta</option>
+    <option value="Retorno">Retorno</option>
+</select>
+
+<!-- OBSERVAÇÃO -->
+<label>Observação</label>
+<input type="text" name="descricao" placeholder="Ex: paciente com dor, retorno, encaixe...">
+
+<button>Agendar</button>
+
+</form>
+
+<script>
+document.getElementById("tipo").addEventListener("change", function() {
+    let valor = this.value;
+    document.getElementById("descricao").value = valor;
+});
+</script>
+
+{% endblock %}

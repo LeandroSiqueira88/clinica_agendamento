@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Editar Usuário</h2>
+
+<form method="POST">
+
+<label>Nome</label>
+<input type="text" name="nome" value="{{ usuario[1] }}">
+
+<label>Usuário</label>
+<input type="text" name="usuario" value="{{ usuario[2] }}">
+
+<label>Tipo</label>
+<select name="tipo">
+    <option value="master" {% if usuario[4] == 'master' %}selected{% endif %}>Master</option>
+    <option value="operador" {% if usuario[4] == 'operador' %}selected{% endif %}>Operador</option>
+    <option value="cliente" {% if usuario[4] == 'cliente' %}selected{% endif %}>Cliente</option>
+</select>
+
+<button>Salvar</button>
+
+</form>
+
+<br>
+
+<a href="/usuarios">
+    <button type="button" style="background: gray;">Cancelar</button>
+</a>
+
+{% endblock %}

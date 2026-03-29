@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Painel do Operador</h2>
+
+<div class="cards">
+
+    <div class="card">
+        <h3>📅 Agenda</h3>
+        <p>Visualizar consultas</p>
+        <a href="/consultas">Ver</a>
+    </div>
+
+    <div class="card">
+        <h3>📝 Novo Agendamento</h3>
+        <p>Criar novo agendamento</p>
+        <a href="/agendar">Agendar</a>
+    </div>
+
+    <div class="card">
+        <h3>👨‍⚕️ Profissionais</h3>
+        <p>Ver profissionais</p>
+        <a href="/profissionais">Acessar</a>
+    </div>
+    
+    <div class="card">
+    <h3>👤 Novo Cliente</h3>
+    <p>Cadastrar paciente</p>
+    <a href="/novo_cliente">Cadastrar</a>
+</div>
+
+</div>
+
+{% endblock %}
